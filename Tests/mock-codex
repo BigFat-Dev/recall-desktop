@@ -1,0 +1,4 @@
+#!/bin/sh
+# Copyright (C) 2026 BigFat-Dev
+# SPDX-License-Identifier: MIT
+exec "${RECALL_PYTHON:-python3}" "$(dirname "$0")/mock_codex.py" "$@"

@@ -1,0 +1,32 @@
+# Generated build and test output
+/build/
+/.build/
+/work/
+*.app/
+*.dSYM/
+*.zip
+*.dmg
+*.pkg
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Personal content and exports
+/data/
+/backups/
+bookmarks.json
+last-return-performance.json
+*.log
+
+# Signing identities, credentials, and local configuration
+/signing/
+*.keychain
+*.keychain-db
+*.p12
+*.pfx
+*.key
+*.pem
+keychain-password
+.env
+.env.*
+*.local

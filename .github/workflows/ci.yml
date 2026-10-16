@@ -1,0 +1,26 @@
+name: Apple Silicon source checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    # GitHub currently provides this arm64 image as a public preview.
+    runs-on: xcode-27
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6.0.3
+        with:
+          persist-credentials: false
+      - name: Verify architecture
+        run: test "$(uname -m)" = arm64
+      - name: Inspect full Xcode toolchain
+        run: |
+          xcodebuild -version
+          xcrun --find actool
+      - name: Run synthetic checks
+        run: ./test.command
+      - name: Build local development app
+        run: ./build.command
