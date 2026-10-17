@@ -2,11 +2,11 @@
 
 ## 当前分发状态
 
-目前已准备 0.3.3 源码候选和本地 DMG 测试包，尚未对外发布或公证。不要把本地编译成功等同于其他电脑已通过安装验证。
+当前公开预览版为 [v0.3.3](https://github.com/BigFat-Dev/recall-desktop/releases/tag/v0.3.3)，提供 DMG 与校验文件，尚未经过 Apple 公证。支持同一桌面宿主应用内的 Codex 和 ChatGPT Work；不要把本机验证通过等同于其他电脑已通过安装验证。
 
 ## 从 DMG 安装
 
-将 Recall Desktop 拖入 Applications，复制完成后推出映像，再从 Applications 启动。不要直接在只读映像内运行。安装并运行 DMG 内应用无需 Xcode 或 Python，但需要用户自行安装受支持的 Codex 桌面端。
+将 Recall Desktop 拖入 Applications，复制完成后推出映像，再从 Applications 启动。不要直接在只读映像内运行。安装并运行 DMG 内应用无需 Xcode 或 Python，但需要用户自行安装受支持的宿主桌面应用，并在其中使用 Codex 或 ChatGPT Work。
 
 当前包只有临时开发签名。从互联网下载后可能被系统阻止，这一实际下载流程尚未验收。核对来源和 SHA-256 后，若 macOS 提供“仍要打开”入口，可按 [Apple 官方说明](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac)操作；并非所有拦截都会提供该入口。本项目不要求关闭 Gatekeeper、移除隔离标记或降低系统安全策略。
 
@@ -14,16 +14,16 @@
 
 在 Apple Silicon Mac 上准备包含原生图标编译器的完整 Xcode。已验证 Xcode 27.0 / Swift 6.4；其他工具链版本未验收。测试需要 Python 3.8+；运行应用不使用 Python。
 
-在仓库根目录执行 `./test.command` 和 `./build.command`，应用位于 `build/Recall Desktop.app`。将其复制到固定的本地位置，例如 Applications；避免同时启动多个相同身份的开发构建。Codex 必须已安装且运行。
+在仓库根目录执行 `./test.command` 和 `./build.command`，应用位于 `build/Recall Desktop.app`。将其复制到固定的本地位置，例如 Applications；避免同时启动多个相同身份的开发构建。宿主桌面应用必须已安装且运行。
 
-组件从正在运行的 Codex 实际安装位置发现，支持应用改名和用户应用目录；请只运行一个安装副本。组件缺失时更新或重新安装官方宿主，再重试。发现规则及开发覆盖见 [技术说明](architecture.md)。不要求提供登录凭证或查找私有数据库。
+组件从正在运行的宿主桌面应用（bundle ID `com.openai.codex`）的实际安装位置发现，支持应用改名和用户应用目录；请只运行一个安装副本。该宿主中的 Codex 和 ChatGPT Work 均在当前支持范围内。组件缺失时更新或重新安装官方宿主，再重试。发现规则及开发覆盖见 [技术说明](architecture.md)。不要求提供登录凭证或查找私有数据库。
 
 ## 首次授权
 
 1. 启动 Recall Desktop，打开设置，查看权限状态。
 2. 在系统设置的“隐私与安全”中找到辅助功能或对应的设备控制访问项目。页面名称可能随系统版本变化。
 3. 手动添加并允许当前实际运行的 Recall Desktop.app，再回到应用点击“检查权限”。权限不会由程序自动授予。
-4. 在 Codex 已完成消息正文上停住指针，按 ⌘⇧M；检查整条正文，再填写备注。
+4. 在 Codex 或 ChatGPT Work 已完成消息正文上停住指针，按 ⌘⇧M；检查整条正文，再填写备注。
 
 只授予当前程序需要的权限；本项目不要求认证凭证。若权限尚未生效，可退出并重新启动 Recall 后检查。签名改变时，旧授权项目可能不再对应新构建，应先确认路径与身份再处理。
 

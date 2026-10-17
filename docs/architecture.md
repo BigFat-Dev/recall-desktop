@@ -4,6 +4,8 @@
 
 Recall Desktop 是独立 SwiftUI/AppKit 应用及菜单栏面板，依赖用户触发的 macOS 辅助功能、宿主公开快捷键、`codex://threads/<UUID>` 对话链接和本地 App Server stdio。它不是嵌入消息菜单的插件，也不是浏览器扩展。
 
+当前支持同一宿主桌面应用中的 Codex 和 ChatGPT Work。ChatGPT Work 的可用性已由项目作者在本机多次实测确认，见[验证记录](validation.md)。下文的 bundle ID、链接协议和组件名称用于说明宿主识别及读取机制，不代表只支持界面中的 Codex 模式；网页版、移动版与其他宿主不因此获得支持。
+
 宿主 bundle ID 为 `com.openai.codex`。优先从唯一的运行宿主取得实际 bundleURL；无运行副本时使用 NSWorkspace 的应用登记位置。不依赖宿主文件名或 `/Applications` 目录，因此可发现改名或位于用户应用目录的安装。多个不同位置的运行副本、身份不符或当前副本缺少组件时明确停止，不混用其他副本。这里的身份检查是 bundle ID 检查，不构成开发者证书认证；请从可信官方来源安装宿主。
 
 组件相对位置仍为 `Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`。组件布局变化时给出更新或重新安装宿主的提示，不自动下载或扫描其他文件。开发者仍可通过显式的 `RECALL_CODEX_PATH` 覆盖；无效覆盖不会静默回退。变量由启动进程继承，Finder 启动不保证继承终端变量。开发者可在终端设置变量后直接执行应用的 `Contents/MacOS/RecallDesktop`。

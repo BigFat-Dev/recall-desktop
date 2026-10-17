@@ -8,7 +8,8 @@ title: ""
 
 - Recall 版本/构建来源：
 - macOS 版本、Apple Silicon 型号：
-- Codex 桌面版本：
+- 宿主桌面应用版本：
+- 所用模式（Codex / ChatGPT Work）：
 - 发生在保存、返回、备注、备份或其他哪个步骤：
 
 ## 使用虚构内容的复现步骤
